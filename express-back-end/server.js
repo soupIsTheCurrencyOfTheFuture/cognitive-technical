@@ -23,8 +23,8 @@ function Last6Days() {
 }
 console.log(Last6Days())
 
-App.get('/api/data', (req, res) => {
-  axios.get('https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=cad&days=5&interval=daily')
+App.post('/api/data', (req, res) => {
+  axios.get(`https://api.coingecko.com/api/v3/coins/${req.body.query}/market_chart?vs_currency=cad&days=5&interval=daily`)
     .then((r) => {
       const returnData = []
       const dates = Last6Days()
@@ -45,6 +45,7 @@ App.get('/api/data', (req, res) => {
       console.log(returnData)
       return res.send(returnData)
     })
+    .catch(error => res.status(error.response.status).send(error.response.statusText));
 })
 
 App.listen(PORT, () => {
