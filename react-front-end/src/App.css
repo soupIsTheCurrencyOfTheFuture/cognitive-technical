@@ -26,7 +26,14 @@
 
 .phonebook-container {
   width: 50vw;
+  padding-top: 100px;
+}
 
+button {
+  margin: 10px;
+}
+input {
+  margin: 10px;
 }
 
 .visualization-container {
