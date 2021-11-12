@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
-export default function Phonebook({setUsers, users}) {
+export default function Phonebook({setUsers, users, searchResult}) {
 
     useEffect(() => {
         axios.get('/api/data')
@@ -15,14 +15,18 @@ export default function Phonebook({setUsers, users}) {
     }, [])
 
     const mappedUsers = users.map((element) => {
-        return (
-            <tr key={element.first}>
-                <td>{element.first}</td>
-                <td>{element.last}</td>
-                <td>{element.number}</td>
-            </tr>
-        )
+        if (searchResult === '' || element.first.startsWith(searchResult) || element.last.startsWith(searchResult)) {
+            return (
+                <tr key={element.first}>
+                    <td>{element.first}</td>
+                    <td>{element.last}</td>
+                    <td>{element.number}</td>
+                </tr>
+            )
+        }
     })
+
+    console.log('loop test')
 
     return (
         <table className='table'>

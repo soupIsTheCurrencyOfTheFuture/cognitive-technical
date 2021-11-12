@@ -1,7 +1,16 @@
-import React from 'react'
+import React, {useState} from 'react'
 
-export default function Search() {
+export default function Search({users, setUsers, searchResult, setSearchResult}) {
+
     return (
-        <div></div>
+        <form>
+            <input
+            placeholder="Search"
+            product="product"
+            type="text"
+            value={searchResult}
+            onChange={(event) => setSearchResult(event.target.value)}
+            />
+        </form>
     )
 }
